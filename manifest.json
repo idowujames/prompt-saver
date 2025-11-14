@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "My Prompt Saver",
+    "version": "1.0.0",
+    "description": "A simple extension to save my frequently used gpt prompts",
+    "action": {
+        "default_popup": "popup.html"
+    }
+
+}
