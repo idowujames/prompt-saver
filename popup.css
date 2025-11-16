@@ -12,12 +12,16 @@ body{
 }
 
 .container{
-    width: 500px;
+    width: 347px;
     background-color: #1f1f31;
-    padding: 20px;
+    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+main{
+    padding: 10px 16px;
 }
 
 header{
@@ -34,6 +38,37 @@ ul{
     scrollbar-width: thin;
     overflow-y: auto;
     padding-bottom: 20px;
+    
+}
+
+li{
+    /* padding: 16px; */
+    border: 1px solid #38384c;
+    border-radius: 5px;
+    margin: 8px 20px 8px 2px;
+    background-color: #1c1c2c;
+
+}
+
+.prompt-title{
+    display: flex;
+    gap: 25px;
+    /* justify-content: space-between; */
+}
+
+li a{
+    padding: 10px;
+    display: inline-block;
+}
+
+.del-btn{
+    background-color: #1c1c2c;
+    align-self: center;
+}
+
+.prompt-text{
+    border-top: 1px solid #38384c;
+    padding: 12px 10px;
 }
 
 .btn{
@@ -53,3 +88,4 @@ ul{
     cursor: pointer;
 
 }
+

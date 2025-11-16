@@ -36,16 +36,24 @@ document.addEventListener("DOMContentLoaded", function(){
                 let listItems = ""
                 for(let i = 0; i < promptArr.length; i++){
                     
-                    listItems += `
-                        <li>    
-                            <a href="#">${promptArr[i].Title}<a/>
-                            <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div>
-                        </li>
-                    `            
+                    listItems += `<li>
+                    <div class="prompt-title">
+                        <a href="#">${promptArr[i].Title}</a>
+                        <button class="del-btn">🗑️</button>
+                    </div>
+                    <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div></li>`            
                 }
                 ulEl.innerHTML = listItems
             }
         }
+
+
+    // Delete prompt
+    const delBtn = document.getElementById("del-btn")
+
+    delBtn.addEventListener("click", function() {
+        
+    })
 
 });
 
