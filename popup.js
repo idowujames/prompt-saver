@@ -1,21 +1,23 @@
 document.addEventListener("DOMContentLoaded", function(){
     
-    const promptTitle = document.getElementById("input-el");
-    const promptText = document.getElementById("text-el");
-
-    const saveBtn = document.getElementById("save-btn");
+    const addPromptBtn = document.getElementById("add-prompt-btn")
 
 
-    saveBtn.addEventListener("click", function(){
+    addPromptBtn.addEventListener("click", function(){
+        const width = 500
+        const height = 400
+        const left = Math.round((screen.width - width) / 2)
+        const top  = Math.round((screen.height - height) / 2)
 
-        let prompts = chrome.storage.local.get()
-        if (!prompts){
-            prompts = []
-        }
-        const title = promptTitle.value;
-        const text = promptText.value;
-
-        console.log(`Title: ${title}, Prompt: ${text}`)
-    });
+        chrome.windows.create({
+            url: "add-prompt.html",
+            type: "popup",
+            width: width,
+            height: height,
+            top: top,
+            left: left,
+            focused: true
+        })
+    })
 
 });
