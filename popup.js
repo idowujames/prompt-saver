@@ -27,29 +27,25 @@ document.addEventListener("DOMContentLoaded", function(){
     if(prompts){
 
         let promptArr = JSON.parse(prompts)
-        let listItems = ""
 
-        for(let i = 0; i < promptArr.length; i++){
-            
-            listItems += `
-                <li>    
-                    <a>${promptArr[i].Title}<a>
-                    <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div>
-                    </li>
-                    `
-            
+        if (promptArr.length === 0){
+            ulEl.innerHTML = `<li><p>No Saved Prompts</p></li>`
         }
-        ulEl.innerHTML = listItems
-    }
-    
-    else{
-        ulEl.innerHTML = `<li>
-                            <p>No Saved Prompts</p>
-                         </li>`
-    }
 
-
-
+        else{
+                let listItems = ""
+                for(let i = 0; i < promptArr.length; i++){
+                    
+                    listItems += `
+                        <li>    
+                            <a href="#">${promptArr[i].Title}<a/>
+                            <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div>
+                        </li>
+                    `            
+                }
+                ulEl.innerHTML = listItems
+            }
+        }
 
 });
 
@@ -69,11 +65,6 @@ function truncate(text, numWords) {
     return text; // No truncation needed
   }
 
-  // 3. Select the desired number of words
-  const truncatedWords = words.slice(0, numWords);
-
   // 4. Join the words back into a string and add the ellipsis
-  return truncatedWords.join(' ') + "...";
+  return words.slice(0, numWords).join(' ') + "...";
 }
-
-// <div class="prompt-text">${text}</div>
