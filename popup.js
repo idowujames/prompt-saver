@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(){
     
     const addPromptBtn = document.getElementById("add-prompt-btn")
+    const ulEl = document.getElementById("promptList")
 
-
+    // Add new prompt
     addPromptBtn.addEventListener("click", function(){
         const width = 500
         const height = 400
@@ -20,4 +21,59 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     })
 
+    // Retrive prompts
+    const prompts = localStorage.getItem("prompts")
+
+    if(prompts){
+
+        let promptArr = JSON.parse(prompts)
+        let listItems = ""
+
+        for(let i = 0; i < promptArr.length; i++){
+            
+            listItems += `
+                <li>    
+                    <a>${promptArr[i].Title}<a>
+                    <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div>
+                    </li>
+                    `
+            
+        }
+        ulEl.innerHTML = listItems
+    }
+    
+    else{
+        ulEl.innerHTML = `<li>
+                            <p>No Saved Prompts</p>
+                         </li>`
+    }
+
+
+
+
 });
+
+
+
+
+
+
+// Helper function to truncate by words
+function truncate(text, numWords) {
+
+  // 1. Split the text into an array of words
+  const words = text.split(' ');
+
+  // 2. Check if truncation is necessary
+  if (words.length <= numWords) {
+    return text; // No truncation needed
+  }
+
+  // 3. Select the desired number of words
+  const truncatedWords = words.slice(0, numWords);
+
+  // 4. Join the words back into a string and add the ellipsis
+  return truncatedWords.join(' ') + "...";
+}
+
+// <div class="prompt-text">${text}</div>

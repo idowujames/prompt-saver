@@ -12,7 +12,7 @@ body{
 }
 
 .container{
-    width: 300px;
+    width: 500px;
     background-color: #1f1f31;
     padding: 20px;
     display: flex;
