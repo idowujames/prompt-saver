@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", function(){
                     let listItems = ""
                     for(let i = 0; i < promptArr.length; i++){
                         
-                        listItems += `<li data-id=${promptArr[i].promptID}>
+                        listItems += `<li data-id="${promptArr[i].promptID}">
                         <div class="prompt-title">
                             <a href="#">${promptArr[i].Title}</a>
-                            <button class="del-btn">🗑️</button>
+                            <button class="del-btn" aria-label="delete prompt button">🗑️</button>
                         </div>
                         <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div></li>`            
                     }
