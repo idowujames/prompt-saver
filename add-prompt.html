@@ -11,7 +11,7 @@
             <h1>Add New Prompt</h1>
         </header>
 
-        <form>
+        <form id="add-form" action="submit">
             <fieldset>
                 <label for="prompt-title">Title</label>
                 <input type="text" id="prompt-title" name="prompt-title" aria-label="Prompt Title">
@@ -21,9 +21,12 @@
                 <label for="prompt-text">Prompt</label>
                 <textarea name="prompt-text" id="prompt-text" cols="50" rows="10" aria-label="Prompt Text"></textarea>
             </fieldset>
-
-            <button type="button" id="save-prompt">Save Prompt</button>
+            
+            <p id="error-text"></p>
+            <button type="submit" id="save-prompt">Save Prompt</button>
         </form>
     </div>
+
+    <script src="add-prompt.js"></script>
 </body>
 </html>
