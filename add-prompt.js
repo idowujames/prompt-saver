@@ -8,6 +8,7 @@ const text = document.getElementById("prompt-text")
 const errorText = document.getElementById("error-text")
 
 const saveBtn = document.getElementById("save-prompt")
+const closeBtn = document.getElementById("close-window")
 
 
 form.addEventListener("submit", function(event){
@@ -17,8 +18,6 @@ form.addEventListener("submit", function(event){
     // Get the trimed values of the title and text
     const promptTitle = title.value.trim()
     const promptText = text.value.trim()
-
-    errorText.textContent = ""
 
     // Quick validation of the input feilds to make sure they are not empty
     if (promptTitle === "" || promptText === ""){
@@ -40,6 +39,7 @@ form.addEventListener("submit", function(event){
     if (prompts != null){
         promptList = JSON.parse(prompts)
     }
+    else{promptList = []}
 
 
     promptList.push(newPrompt)
@@ -47,6 +47,12 @@ form.addEventListener("submit", function(event){
 
     localStorage.setItem("prompts", JSON.stringify(promptList))
 
+    form.reset()
+    errorText.textContent = ""
+
 })
 
+closeBtn.addEventListener('click', function(){
+    window.close()
+})
 
