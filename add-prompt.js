@@ -18,6 +18,7 @@ form.addEventListener("submit", function(event){
     // Get the trimed values of the title and text
     const promptTitle = title.value.trim()
     const promptText = text.value.trim()
+    const id = Date.now() + Math.random()
 
     // Quick validation of the input feilds to make sure they are not empty
     if (promptTitle === "" || promptText === ""){
@@ -29,7 +30,8 @@ form.addEventListener("submit", function(event){
     // Creating the new prompt
     const newPrompt = {
         "Title": promptTitle,
-        "Prompt": promptText
+        "Prompt": promptText,
+        "promptID": id
     }
 
     

@@ -3,8 +3,48 @@ document.addEventListener("DOMContentLoaded", function(){
     const addPromptBtn = document.getElementById("add-prompt-btn")
     const ulEl = document.getElementById("promptList")
 
+    
+    // Retrive prompts
+    const prompts = localStorage.getItem("prompts")
+
+    if(prompts){        
+        let promptArr = JSON.parse(prompts)
+        render(promptArr)
+    }
+
+
     // Add new prompt
-    addPromptBtn.addEventListener("click", function(){
+    addPromptBtn.addEventListener("click", addPrompt)
+
+        
+
+
+
+
+    // Render PromptList Function
+    function render(promptArr) {
+        
+        if (promptArr.length === 0){
+                ulEl.innerHTML = `<li><p>No Saved Prompts</p></li>`
+            }
+
+            else{
+                    let listItems = ""
+                    for(let i = 0; i < promptArr.length; i++){
+                        
+                        listItems += `<li data-id=${promptArr[i].promptID}>
+                        <div class="prompt-title">
+                            <a href="#">${promptArr[i].Title}</a>
+                            <button class="del-btn">🗑️</button>
+                        </div>
+                        <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div></li>`            
+                    }
+                    ulEl.innerHTML = listItems
+                }    
+    }
+
+    // Add Prompt
+    function addPrompt() {
         const width = 500
         const height = 400
         const left = Math.round((screen.width - width) / 2)
@@ -19,41 +59,7 @@ document.addEventListener("DOMContentLoaded", function(){
             left: left,
             focused: true
         })
-    })
-
-    // Retrive prompts
-    const prompts = localStorage.getItem("prompts")
-
-    if(prompts){
-
-        let promptArr = JSON.parse(prompts)
-
-        if (promptArr.length === 0){
-            ulEl.innerHTML = `<li><p>No Saved Prompts</p></li>`
-        }
-
-        else{
-                let listItems = ""
-                for(let i = 0; i < promptArr.length; i++){
-                    
-                    listItems += `<li>
-                    <div class="prompt-title">
-                        <a href="#">${promptArr[i].Title}</a>
-                        <button class="del-btn">🗑️</button>
-                    </div>
-                    <div class="prompt-text">${truncate(promptArr[i].Prompt, 10)}</div></li>`            
-                }
-                ulEl.innerHTML = listItems
-            }
-        }
-
-
-    // Delete prompt
-    const delBtn = document.getElementById("del-btn")
-
-    delBtn.addEventListener("click", function() {
-        
-    })
+    }
 
 });
 
