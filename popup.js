@@ -6,15 +6,42 @@ document.addEventListener("DOMContentLoaded", function(){
     
     // Retrive prompts
     const prompts = localStorage.getItem("prompts")
+    let promptArr = JSON.parse(prompts)
 
     if(prompts){        
-        let promptArr = JSON.parse(prompts)
         render(promptArr)
     }
 
 
     // Add new prompt
     addPromptBtn.addEventListener("click", addPrompt)
+
+    // Event Listener on the ul for click events
+    ulEl.addEventListener('click', function(event){
+        const delButtonEl = event.target.closest(".del-btn")
+
+        if(!delButtonEl){
+            return
+        }
+
+        const liElement = delButtonEl.closest('li')
+
+        if(!liElement){
+            console.log("No li with id found")
+            return
+        }
+
+        const promptList = JSON.parse(localStorage.getItem("prompts") || "[]") 
+        const newPromptList = promptList.filter(item => liElement.dataset.id !== item.promptID) 
+        
+        if(promptList.length === newPromptList.length){
+            return
+        }
+        
+        localStorage.setItem("prompts", JSON.stringify(newPromptList))
+        render(newPromptList)  // or liElement.remove()   
+
+    })
 
         
 
